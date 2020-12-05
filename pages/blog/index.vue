@@ -29,4 +29,5 @@ export default {
 <style lang="sass">
 section.about
   padding-bottom: 0
+
 </style>

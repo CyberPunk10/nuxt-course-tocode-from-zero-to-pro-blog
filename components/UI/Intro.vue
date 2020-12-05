@@ -18,9 +18,7 @@ export default {
 </script>
 
 <style lang="sass">
-section.intro
-  width: 100%
-  margin: 30px 0
+.intro .container
   text-align: center
   color: #fff
   background-color: #4b4

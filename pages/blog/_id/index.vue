@@ -1,0 +1,53 @@
+<template>
+  <div class="wrapper-content wrapper-content--fixed">
+    <Post :post="post"/>
+    <NewComment/>
+    <Comments :comments="comments"/>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      post: {
+        id: 1,
+        title: 'First post',
+        descr: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
+        img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
+        content: 'content'
+      },
+      comments: [
+        {
+          id: 1,
+          name: 'First post',
+          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
+          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
+        },
+        {
+          id: 2,
+          name: 'First post',
+          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
+          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
+        },
+        {
+          id: 3,
+          name: 'First post',
+          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
+          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
+        },
+        {
+          id: 4,
+          name: 'First post',
+          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
+          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
+        }
+      ]
+    }
+  }
+}
+</script>
+
+<style lang="sass">
+
+</style>
