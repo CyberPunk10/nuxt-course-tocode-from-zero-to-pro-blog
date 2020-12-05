@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper-content wrapper-content--fixed">
     <Post :post="post"/>
-    <NewComment/>
     <Comments :comments="comments"/>
+    <NewComment/>
   </div>
 </template>
 

@@ -3,12 +3,9 @@
     <div class="container">
       <h2 class="contact-title">Contact me!</h2>
       <form @submit.prevent="onSubmit" class="contct-form">
-        <label>Name: </label>
-        <input v-model="user.name" type="text">
-        <label>Email: </label>
-        <input v-model="user.email" type="text">
-        <label>Text: </label>
-        <textarea v-model="user.text"></textarea>
+        <AppInput v-model="user.name">Name:</AppInput>
+        <AppInput v-model="user.email" type="email">Email:</AppInput>
+        <AppTextarea v-model="user.text">Text:</AppTextarea>
         <!-- buttons -->
         <div class="controls">
           <AppButton class="btnWhite">Submit!</AppButton>

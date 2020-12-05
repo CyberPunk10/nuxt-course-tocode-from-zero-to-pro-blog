@@ -3,13 +3,11 @@
     <div class="container">
       <h2 class="comment-title">New comment.</h2>
       <form @submit.prevent="onSubmit" class="contct-form">
-        <label>Name: </label>
-        <input v-model="user.name" type="text">
-        <label>Text: </label>
-        <textarea v-model="user.text"></textarea>
+        <AppInput v-model="user.name">Name:</AppInput>
+        <AppTextarea v-model="user.text">Text:</AppTextarea>
         <!-- buttons -->
         <div class="controls">
-          <button class="btn btnWhite">Submit!</button>
+          <AppButton>Create comments</AppButton>
         </div>
       </form>
     </div>
@@ -38,12 +36,8 @@ export default {
 <style lang="sass">
 .comment
   text-align: center
-  background: #ccc // fallback for old browsers
-  background: -webkit-linear-gradient(to right, #bbb, #aaa) // Chrome 10-25, Safari 5.1-6
-  background: linear-gradient(to right, #bbb, #aaa) // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
-
-
-  color: #fff
+  background: none
+  color: #444
   &-form
     max-width: 600px
     margin: 30px auto 0
