@@ -1,10 +1,11 @@
 <template>
   <div>
-    <Nuxt />
+    <Header/>
+    <Nuxt class="wrapper-content"/>
   </div>
 </template>
 
-<style>
+<style lang='scss'>
 html {
   font-family:
     'Source Sans Pro',
@@ -59,4 +60,9 @@ html {
   color: #fff;
   background-color: #35495e;
 }
+
+.wrapper-content>div {
+  padding-top: 3rem;
+}
+
 </style>
