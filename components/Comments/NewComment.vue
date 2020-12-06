@@ -2,6 +2,8 @@
   <section class="comment">
     <div class="container">
       <h2 class="comment-title">New comment.</h2>
+      <Message v-if="message" :message="message" :class="mesClass"/>
+
       <form @submit.prevent="onSubmit" class="contct-form">
         <AppInput v-model="user.name">Name:</AppInput>
         <AppTextarea v-model="user.text">Text:</AppTextarea>
@@ -23,11 +25,14 @@ export default {
         email: '',
         text: ''
       },
+      message: false,
+      mesClass: ''
     }
   },
   methods: {
     onSubmit() {
       console.log(this.user)
+      this.message = 'yes'
     }
   }
 }

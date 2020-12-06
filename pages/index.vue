@@ -1,18 +1,12 @@
 <template>
-  <div class="wrapper-content wrapper-content--fixed">
-    <section class="about">
-      <div class="container">
-        <Promo />
-        <Intro title="My last posts:"/>
-        <PostsList :posts="posts"/>
-      </div>
-      <Contacts/>
-    </section>
-  </div>
+  <section>
+    <div class="container">
+      <Promo />
+      <PostsList :posts="posts"/>
+    </div>
+  </section>
 </template>
 <script>
-import Contacts from "~/components/Contacts.vue"
-
 export default {
   data () {
     return {
@@ -25,8 +19,3 @@ export default {
   }
 }
 </script>
-
-<style lang="sass">
-section.about
-  padding-bottom: 0
-</style>
