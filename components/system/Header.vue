@@ -2,8 +2,9 @@
   <header>
     <div class="navbar">
       <div class="container">
+
         <div class="navbar-content">
-          <div class="logo">Blog</div>
+          <div><nuxt-link class="logo" to="/">Blog</nuxt-link></div>
           <ul class="navbar-list">
             <li
               class="navbar-item"
@@ -17,6 +18,11 @@
             </li>
           </ul>
         </div>
+
+        <!-- admin-panel -->
+        <div class="navbar-content-admin">
+          <AdminPanel/>
+        </div>
       </div>
     </div>
   </header>
@@ -28,15 +34,11 @@ export default {
     return {
       links: [
         {title: 'Home', url: '/'},
-        {title: 'About', url: '/about'}
+        {title: 'Blog', url: '/blog'},
+        {title: 'About', url: '/about'},
+        {title: 'Admin', url: '/admin'}
       ]
     }
-  },
-  computed: {
-
-  },
-  methods: {
-
   }
 }
 </script>
@@ -45,5 +47,11 @@ export default {
 .navbar-item
   .nuxt-link-exact-active
     color: #4b4
+.logo
+    color: #333
+
+.navbar-content-admin
+  border-top: 1px solid #eee
+  justify-content: flex-end
 
 </style>

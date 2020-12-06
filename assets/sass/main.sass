@@ -1,6 +1,7 @@
 // тк мы к ним обращаемся везде ниже
-@import "utils/_vars"
+@import "vars/_vars"
 @import "utils/_reset"
+@import "mixins/_mixins"
 
 html
   line-height: $mainLineHeight
@@ -27,9 +28,6 @@ body
   padding: 0
   background-color: #f7f7f7
 
-
-*, *:before, *:after
-  box-sizing: border-box
 
 h1, h2, h3, h4, h5, h6
   margin: 0
@@ -70,7 +68,7 @@ section, .section
   flex-direction: column
   min-height: 100vh
   &.wrapper-content--fixed
-    padding-top: 80px
+    padding-top: 100px
 
 .container
   width: 100%
