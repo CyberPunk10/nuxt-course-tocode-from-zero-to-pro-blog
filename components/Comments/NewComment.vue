@@ -5,8 +5,8 @@
       <Message v-if="message" :message="message" :class="mesClass"/>
 
       <form @submit.prevent="onSubmit" class="comment-form">
-        <AppInput v-model="user.name">Name:</AppInput>
-        <AppTextarea v-model="user.text">Text:</AppTextarea>
+        <AppInput v-model="user.name">Name</AppInput>
+        <AppTextarea v-model="user.text">Text</AppTextarea>
         <!-- buttons -->
         <div class="controls tac">
           <AppButton>Create comment</AppButton>

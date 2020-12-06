@@ -18,7 +18,8 @@ export default {
   data() {
     return {
       links: [
-        {title: '+ New post', url: '/admin/new-post'}
+        {title: '+ New post', url: '/admin/new-post'},
+        {title: 'Auth', url: '/admin/auth'}
       ]
     }
   }

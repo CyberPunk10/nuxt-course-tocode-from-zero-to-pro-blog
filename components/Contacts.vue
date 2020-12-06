@@ -5,9 +5,9 @@
       <Message v-if="message" :message="message" :class="mesClass"/>
 
       <form @submit.prevent="onSubmit" class="contact-form">
-        <AppInput v-model="user.name">Name:</AppInput>
-        <AppInput v-model="user.email" type="email">Email:</AppInput>
-        <AppTextarea v-model="user.text">Text:</AppTextarea>
+        <AppInput v-model="user.name">Name</AppInput>
+        <AppInput v-model="user.email" type="email">Email</AppInput>
+        <AppTextarea v-model="user.text">Text</AppTextarea>
         <!-- buttons -->
         <div class="controls tac">
           <AppButton class="btnWhite">Submit!</AppButton>

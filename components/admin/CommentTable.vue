@@ -1,19 +1,15 @@
 <template>
-  <section>
-    <div class="container">
-      <table>
+  <table>
 
-        <!-- thead -->
-        <thead>
-          <tr><th v-for="(th, index) in thead" :key="index">{{ th }}</th></tr>
-        </thead>
-        
-        <!-- tbody -->
-        <slot name="tbody"> </slot>
+    <!-- thead -->
+    <thead>
+      <tr><th v-for="(th, index) in thead" :key="index">{{ th }}</th></tr>
+    </thead>
 
-      </table>
-    </div>
-  </section>
+    <!-- tbody -->
+    <slot name="tbody"></slot>
+
+  </table>
 </template>
 
 <script>
@@ -34,23 +30,22 @@ table {
   line-height: 1.5em;
   // mb
   border-collapse: separate;
-  border-spacing: 0 14px;
+  border-spacing: 0 16px;
   thead th {
     padding: 20px 22px;
     white-space: nowrap;
-    font-size: 20px;
+    font-size: 18px;
   }
   td {
     padding: 20px;
+    font-size: 16px;
   }
   tbody tr {
     background-color: #ffffff;
     transition: all .25s cubic-bezier(.02,.01,.47,1);
     box-shadow: 0 16px 16px rgba(0,0,0,.01);
     &:hover {
-      box-shadow: 0 16px 16px rgba(0,0,0,.02);
-      transform: translate(0,-3px);
-      transition-delay: 0s !important;
+      box-shadow: 0 16px 16px rgba(0,0,0,.06);
     }
   }
 }
