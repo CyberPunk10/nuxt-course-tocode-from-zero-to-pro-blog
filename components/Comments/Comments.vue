@@ -34,5 +34,4 @@ export default {
   .text
     color: #444
     font-size: 14px
-    letter-spacing: .3px
 </style>

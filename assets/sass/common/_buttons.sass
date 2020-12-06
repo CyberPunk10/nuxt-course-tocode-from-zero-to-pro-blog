@@ -1,10 +1,13 @@
 .btn
   display: inline-block
   padding: .8em 2em
+  margin: 10px
   line-height: 1
   text-transform: uppercase
   cursor: pointer
-  border-radius: 30px
+  border-radius: $borderRadius
+  background-color: transparent
+  transition: all .1s ease-out
 
   // default btn
   &.btnDefaul
@@ -14,18 +17,28 @@
 
   // primiry btn
   &.btnPrimary
-    color: #ffffff
-    border: 1px solid #494ce8
-    background-color: #494ce8
+    color: $primary-color
+    border: 1px solid $primary-color
+    background-color: rgba(68, 187, 68, .08)
+    &:hover
+      color: #ffffff
+      background-color: $primary-color
+
 
   // danger btn
   &.btnDanger
-    color: #ffffff
-    border: 1px solid hsl(0, 48%, 48%)
-    background-color: #b53f3f
+    color: $danger-color
+    border: 1px solid $danger-color
+    background-color: rgba(252, 92, 101, .08)
+    &:hover
+      color: #fff
+      background-color: $danger-color
 
   &.btnWhite
-    color: #333333
-    border: 1px solid #ffffff
-    background-color: #ffffff
+    color: $neutral-primary
+    border: 1px solid $neutral-primary
+    background-color: #fff
+    &:hover
+      color: #fff
+      background-color: $neutral-primary
 

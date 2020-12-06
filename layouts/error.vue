@@ -2,7 +2,7 @@
   <section class="not-found">
     <div class="not-found__wrapper">
       <p class="title">Page not found</p>
-      <nuxt-link to="/">Back to mein page</nuxt-link>
+      <nuxt-link to="/">Back to main page</nuxt-link>
     </div>
   </section>
 </template>

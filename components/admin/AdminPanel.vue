@@ -5,7 +5,7 @@
       v-for="link in links" :key="link.title"
     >
       <nuxt-link
-        class="navbar-link admin"
+        class="navbar-link"
         :to="link.url"
         :title="link.title"
       >{{ link.title }}</nuxt-link>
@@ -18,10 +18,7 @@ export default {
   data() {
     return {
       links: [
-        {title: 'Home', url: '/'},
-        {title: 'Blog', url: '/blog'},
-        {title: 'About', url: '/about'},
-        {title: 'Admin', url: '/admin'}
+        {title: '+ New post', url: '/admin/new-post'}
       ]
     }
   }
@@ -29,6 +26,11 @@ export default {
 </script>
 
 <style lang="sass">
-.navbar-link.admin
-  padding: 5px 0
+.navbar-content-admin
+  .navbar-list
+    justify-content: flex-end
+
+  .navbar-link
+    font-size: 16px
+    padding: 7px 0
 </style>
