@@ -1,15 +1,15 @@
 <template>
   <section class="comment">
     <div class="container">
-      <h2 class="comment-title">New comment.</h2>
+      <h2 class="title tac">New comment</h2>
       <Message v-if="message" :message="message" :class="mesClass"/>
 
-      <form @submit.prevent="onSubmit" class="contct-form">
+      <form @submit.prevent="onSubmit" class="comment-form">
         <AppInput v-model="user.name">Name:</AppInput>
         <AppTextarea v-model="user.text">Text:</AppTextarea>
         <!-- buttons -->
-        <div class="controls">
-          <AppButton>Create comments</AppButton>
+        <div class="controls tac">
+          <AppButton>Create comment</AppButton>
         </div>
       </form>
     </div>
@@ -40,13 +40,10 @@ export default {
 
 <style lang="sass">
 .comment
-  text-align: center
-  background: none
-  color: #444
   &-form
-    max-width: 600px
+    max-width: 400px
     margin: 30px auto 0
   .controls
-    margin: 30px 0
+    margin: 15px 10px
 
 </style>

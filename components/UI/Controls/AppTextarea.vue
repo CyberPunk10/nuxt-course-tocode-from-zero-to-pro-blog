@@ -18,3 +18,10 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.control textarea
+  resize: vertical
+  min-height: 100px
+  overflow: hidden
+</style>

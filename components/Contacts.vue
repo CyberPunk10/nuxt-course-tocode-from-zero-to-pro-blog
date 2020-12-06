@@ -1,15 +1,15 @@
 <template>
   <section class="contact">
     <div class="container">
-      <h2 class="contact-title">Contact me!</h2>
+      <h2 class="title tac">Contact me!</h2>
       <Message v-if="message" :message="message" :class="mesClass"/>
 
-      <form @submit.prevent="onSubmit" class="contct-form">
+      <form @submit.prevent="onSubmit" class="contact-form">
         <AppInput v-model="user.name">Name:</AppInput>
         <AppInput v-model="user.email" type="email">Email:</AppInput>
         <AppTextarea v-model="user.text">Text:</AppTextarea>
         <!-- buttons -->
-        <div class="controls">
+        <div class="controls tac">
           <AppButton class="btnWhite">Submit!</AppButton>
         </div>
       </form>
@@ -34,6 +34,7 @@ export default {
     onSubmit() {
       console.log(this.user)
       this.message = "Yohooo"
+      console.log(this.$route.path)
     }
   }
 }
@@ -41,17 +42,12 @@ export default {
 
 <style lang="sass">
 .contact
-  text-align: center
-  background: #ccc // fallback for old browsers
-  background: -webkit-linear-gradient(to right, #bbb, #aaa) // Chrome 10-25, Safari 5.1-6
-  background: linear-gradient(to right, #bbb, #aaa) // W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+
-
-
-  color: #fff
+  border-top: 1px solid #e6e6e6
+  padding-top: 40px
   &-form
-    max-width: 600px
+    max-width: 400px
     margin: 30px auto 0
   .controls
-    margin: 30px 0
+    margin: 15px 0 10px
 
 </style>

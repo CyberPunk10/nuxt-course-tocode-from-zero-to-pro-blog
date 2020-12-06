@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div class="navbar">
+    <div class="navbar" :class="{admin: this.$route.path === '/admin'}">
       <div class="container">
 
         <div class="navbar-content">
@@ -18,9 +18,8 @@
             </li>
           </ul>
         </div>
-
         <!-- admin-panel -->
-        <div class="navbar-content-admin">
+        <div v-if="this.$route.path === '/admin'" class="navbar-content-admin">
           <AdminPanel/>
         </div>
       </div>
