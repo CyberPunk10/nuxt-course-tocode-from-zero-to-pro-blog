@@ -20,6 +20,16 @@ export default {
     }
   },
 
+  asyncData(context) {
+    return $axios.get(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.postId}.json`)
+      .then(res=> {
+        return {
+          post: {...res.data, id: context.params.postId}
+        }
+      })
+      .cath(e => console.log(e))
+  },
+
   methods: {
     onSubmit(post) {
       console.log(post)

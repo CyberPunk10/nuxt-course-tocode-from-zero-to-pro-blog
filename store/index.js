@@ -5,8 +5,8 @@ export const state = () => ({
 export const mutations = {
   setPosts(state, posts) {
     console.log('[POSTS]', posts)
-    // state.postsLoaded = posts
-    console.log(state.postLoaded)
+    state.postsLoaded = posts
+    console.log('[STATE]', state.postsLoaded)
   },
 
   addPost(state, post) {
@@ -37,7 +37,5 @@ export const actions = {
 }
 
 export const getters = {
-  getPostsLoaded(state) {
-    return state.postLoaded
-  }
+  getPostsLoaded: state => state.postLoaded
 }

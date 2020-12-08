@@ -2,7 +2,7 @@
   <section class="admin">
     <div class="container">
       <Promo />
-      <PostsList :posts="posts" :admin="true"/>
+      <PostsList :posts="postsLoaded" :admin="true"/>
     </div>
   </section>
 </template>
@@ -18,7 +18,15 @@ export default {
         {id: 3, title: 'Audi', descr: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates provident iure consequatur fuga veniam ducimus rerum ut minus dolorum. Est, officia. Eveniet magnam dolore id. Earum in autem dignissimos voluptatem.', img: 'https://images.unsplash.com/photo-1568994443334-5931a5fd8664?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80'}
       ]
     }
+  },
+
+  computed: {
+    postsLoaded() {
+      console.log("[blog/index.vue]", this.$store.getters.getPostsLoaded)
+      return this.$store.getters.getPostsLoaded
+    }
   }
+
 }
 </script>
 
