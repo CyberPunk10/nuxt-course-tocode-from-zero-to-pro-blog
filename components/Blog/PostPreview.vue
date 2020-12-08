@@ -30,7 +30,7 @@ export default {
 
 <style lang="sass">
 .post-preview
-  max-width: 48%
+  width: 48%
   padding: 16px
   margin-bottom: 20px
   // text-align: center
