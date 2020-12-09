@@ -1,17 +1,26 @@
 export const state = () => ({
-  postsLoaded: []
+  postsLoaded: [],
+  commetsLoaded: []
 })
 
 export const mutations = {
   setPosts(state, posts) {
-    console.log('[POSTS]', posts)
     state.postsLoaded = posts
-    console.log('[STATE]', state.postsLoaded)
   },
 
   addPost(state, post) {
     state.postsLoaded.push(post)
-  }
+  },
+
+  saveEditPost(state, postEdit) {
+    const postIndex = state.postsLoaded.findIndex(post => post.id === postEdit.id)
+    state.postsLoaded[postIndex] = postEdit
+  },
+
+  //comments
+  addComment(state, commet) {
+    state.commetsLoaded.push(commet)
+  },
 }
 
 export const actions = {
@@ -33,9 +42,28 @@ export const actions = {
         commit('addPost', {...post, id: res.data.name})
       })
       .catch(e => console.log(e))
+  },
+
+  saveEditPost({commit}, postEdit) {
+    return this.$axios.put(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts/${postEdit.id}.json`, postEdit)
+      .then(res => {
+        commit('saveEditPost', postEdit)
+      })
+      .catch(e => console.log(e))
+  },
+
+
+  // comments
+  addComment({commit}, comment) {
+    return this.$axios.post('https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments.json', comment)
+      .then(res => {
+        commit('addComment', {...comment, id: res.data.name})
+      })
+      .catch(e => console.log(e))
   }
 }
 
 export const getters = {
-  getPostsLoaded: state => state.postLoaded
+  getPostsLoaded: state => state.postsLoaded,
+  // getCommentsLoaded: state => state.commentsLoaded
 }

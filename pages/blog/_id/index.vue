@@ -2,49 +2,49 @@
   <div class="wrapper-content wrapper-content--fixed">
     <Post :post="post"/>
     <Comments :comments="comments"/>
-    <NewComment/>
+    <NewComment :postId="$route.params.id"/>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  async asyncData(context) {
+    let [post, comments] = await Promise.all([
+      context.store.$axios.get(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.id}.json`),
+      context.store.$axios.get(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments.json`)
+    ])
+
+    // 1 способ
+    // let commentsArray = [],
+    //     commentsArrayRes = []
+    // // приводим объект comments в массив (firebase хранит в объектах)
+    // Object.keys(comments.data).forEach(key => {
+    //   commentsArray.push(comments.data[key])
+    // })
+    // // перебираем все комментарии сравнивая с id поста и смотрим на статус publish
+    // for (let i=0; i < commentsArray.length; i++) {
+    //   if (commentsArray[i].postId === context.params.id && commentsArray[i].publish) {
+    //     commentsArrayRes.push(commentsArray[i])
+    //   }
+    // }
+
+    // 2 способ
+    let commentsArrayRes = Object.values(comments.data)
+      .filter(comment => (
+        comment.postId === context.params.id && comment.publish
+      ))
+
     return {
-      post: {
-        id: 1,
-        title: 'First post',
-        descr: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
-        img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
-        content: 'content'
-      },
-      comments: [
-        {
-          id: 1,
-          name: 'First post',
-          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
-          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
-        },
-        {
-          id: 2,
-          name: 'First post',
-          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
-          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
-        },
-        {
-          id: 3,
-          name: 'First post',
-          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
-          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
-        },
-        {
-          id: 4,
-          name: 'First post',
-          text: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero aut eum numquam mollitia corporis quia assumenda, officia eos porro illo earum dicta sapiente commodi, optio nesciunt. Adipisci pariatur inventore facilis.',
-          img: 'https://images.unsplash.com/photo-1454264856604-ca40bd3a0a7a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1439&q=80',
-        }
-      ]
+      post: post.data,
+      comments: commentsArrayRes
     }
-  }
+  },
+
+  // computed: {
+  //   commentsLoaded() {
+  //     return this.$store.getters.getCommentsLoaded
+  //   }
+  // }
 }
 </script>
 

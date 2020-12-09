@@ -12,7 +12,6 @@
 export default {
   computed: {
     postsLoaded() {
-      console.log("[blog/index.vue]", this.$store.getters.getPostsLoaded)
       return this.$store.getters.getPostsLoaded
     }
   }
