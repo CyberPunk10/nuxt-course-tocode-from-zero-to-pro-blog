@@ -5,8 +5,8 @@
       <Message v-if="message" :message="message" :class="mesClass"/>
 
       <form @submit.prevent="onSubmit" class="comment-form">
-        <AppInput v-model="user.name">Name</AppInput>
-        <AppTextarea v-model="user.text">Text</AppTextarea>
+        <AppInput v-model="comment.name">Name</AppInput>
+        <AppTextarea v-model="comment.text">Text</AppTextarea>
         <!-- buttons -->
         <div class="controls tac">
           <AppButton>Create comment</AppButton>
@@ -18,21 +18,34 @@
 
 <script>
 export default {
+  props: {
+    postId: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      user: {
+      comment: {
         name: '',
-        email: '',
         text: ''
       },
-      message: false,
+      message: null,
       mesClass: ''
     }
   },
   methods: {
     onSubmit() {
-      console.log(this.user)
-      this.message = 'yes'
+      this.$store.dispatch('addComment', {
+        postId: this.postId,
+        publish: false,
+        ...this.comment
+      })
+        .then( () => {
+          this.message = 'Submited'
+          this.comment.name = this.comment.text = ''
+        })
+        .catch( e => console.log(e))
     }
   }
 }

@@ -19,7 +19,8 @@ export default {
     return {
       links: [
         {title: '+ New post', url: '/admin/new-post'},
-        {title: 'Auth', url: '/admin/auth'}
+        {title: 'Comments', url: '/admin/comments'},
+        {title: 'Auth', url: '/admin/auth'},
       ]
     }
   }
