@@ -1,5 +1,6 @@
 export const state = () => ({
   postsLoaded: [],
+  token: null,
   commetsLoaded: []
 })
 
@@ -21,6 +22,11 @@ export const mutations = {
   addComment(state, commet) {
     state.commetsLoaded.push(commet)
   },
+
+  // setToken
+  setToken(state, token) {
+    state.token = token
+  }
 }
 
 export const actions = {
@@ -36,6 +42,18 @@ export const actions = {
       .catch(e => console.log(e))
   },
 
+  //auth
+  authUser({commit}, authData) {
+    const key = 'AIzaSyAgpZ2lOeilGYLGxClhszVQWPHFf3L23yo'
+    return this.$axios.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`, {
+      email: authData.email,
+      password: authData.password,
+      returnSecureToken: true // защищает админку (для обычных пользователей это не обязательно)
+    })
+      .then(res => { commit('setToken', res.data.idToken) })
+      .catch(e => console.log(e))
+  },
+
   addPost({commit}, post) {
     return this.$axios.post('https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts.json', post)
       .then(res => {
@@ -44,8 +62,8 @@ export const actions = {
       .catch(e => console.log(e))
   },
 
-  saveEditPost({commit}, postEdit) {
-    return this.$axios.put(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts/${postEdit.id}.json`, postEdit)
+  saveEditPost({commit, state}, postEdit) {
+    return this.$axios.put(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts/${postEdit.id}.json?auth=${state.token}`, postEdit)
       .then(res => {
         commit('saveEditPost', postEdit)
       })
@@ -65,5 +83,8 @@ export const actions = {
 
 export const getters = {
   getPostsLoaded: state => state.postsLoaded,
-  // getCommentsLoaded: state => state.commentsLoaded
+  // getCommentsLoaded: state => state.commentsLoaded,
+  checkAuthUser (state) {
+    return state.token != null
+  }
 }

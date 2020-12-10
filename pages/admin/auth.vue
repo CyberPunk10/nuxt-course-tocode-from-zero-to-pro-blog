@@ -25,10 +25,18 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.user)
+      // console.log(this.user.email, this.user.password)
+      this.$store.dispatch('authUser', this.user)
+        .then(res => {
+          // console.log(res)
+          this.$router.push('/admin')
+        })
+        .catch(e => {
+          console.log(e)
+          this.user.password = ''
+        })
 
       // Reset
-      this.user.email = this.user.password = ''
     }
   }
 }

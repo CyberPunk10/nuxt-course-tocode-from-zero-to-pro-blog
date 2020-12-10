@@ -14,25 +14,29 @@ export default {
       context.store.$axios.get(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments.json`)
     ])
 
-    // 1 способ
-    // let commentsArray = [],
-    //     commentsArrayRes = []
-    // // приводим объект comments в массив (firebase хранит в объектах)
-    // Object.keys(comments.data).forEach(key => {
-    //   commentsArray.push(comments.data[key])
-    // })
-    // // перебираем все комментарии сравнивая с id поста и смотрим на статус publish
-    // for (let i=0; i < commentsArray.length; i++) {
-    //   if (commentsArray[i].postId === context.params.id && commentsArray[i].publish) {
-    //     commentsArrayRes.push(commentsArray[i])
-    //   }
-    // }
+    let commentsArrayRes = []
 
-    // 2 способ
-    let commentsArrayRes = Object.values(comments.data)
-      .filter(comment => (
-        comment.postId === context.params.id && comment.publish
-      ))
+    // если есть комментарии, то ищем среди них опубликованные и относящиеся к this.post
+    if (comments.data) {
+      // 1 способ
+      // let commentsArray = []
+      // // приводим объект comments в массив (firebase хранит в объектах)
+      // Object.keys(comments.data).forEach(key => {
+      //   commentsArray.push(comments.data[key])
+      // })
+      // // перебираем все комментарии сравнивая с id поста и смотрим на статус publish
+      // for (let i=0; i < commentsArray.length; i++) {
+      //   if (commentsArray[i].postId === context.params.id && commentsArray[i].publish) {
+      //     commentsArrayRes.push(commentsArray[i])
+      //   }
+      // }
+
+      // 2 способ
+      commentsArrayRes = Object.values(comments.data)
+        .filter(comment => (
+          comment.postId === context.params.id && comment.publish
+        ))
+    }
 
     return {
       post: post.data,

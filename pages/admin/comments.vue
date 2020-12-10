@@ -34,40 +34,43 @@ export default {
     }
   },
 
-  created() {
-    this.$axios
-      .get('https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments.json')
-        .then(res => {
-          // console.log('[res]', res)
-          let commentsArray = []
-          Object.keys(res.data).forEach(key => {
-            const comment = res.data[key]
-            commentsArray.push({...comment, id: key}) // т.к. key === id (-MO5EZAXf2UJMrySZbD1)
-          })
-          // console.log('[res]', commentsArray)
-          this.comments = commentsArray
-        })
+  mounted() {
+    this.loadComments()
   },
 
   methods: {
+    loadComments() {
+      this.$axios
+        .get('https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments.json')
+          .then(res => {
+            // console.log('[res]', res)
+            let commentsArray = []
+
+            if (res.data) { // если есть данные..
+              Object.keys(res.data).forEach(key => {
+                const comment = res.data[key]
+                commentsArray.push({...comment, id: key}) // т.к. key === id (-MO5EZAXf2UJMrySZbD1)
+              })
+              // console.log('[commentsArray]', commentsArray)
+            }
+
+            this.comments = commentsArray
+          })
+    },
+
     changeComent(comment) {
       // console.log('change coment - ', comment)
       comment.publish = !comment.publish
       this.$axios
         .put(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments/${comment.id}.json`, comment)
-          .then(res => {
-
-          })
+          // .then(res => {})
           .catch(e => console.log(e))
-
     },
+
     deleteComent(id) {
-      console.log('delete coment - ', id)
       this.$axios
         .delete(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/comments/${id}.json`)
-          .then(res => {
-
-          })
+          .then(res => { this.loadComments() })
           .catch(e => console.log(e))
     }
   }
