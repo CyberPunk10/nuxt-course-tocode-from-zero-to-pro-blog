@@ -8,6 +8,24 @@
 
 <script>
 export default {
+  head() {
+    let title = this.post.title,
+        descr = this.post.descr,
+        img = `https:/site.ru/${this.post.img}`,
+        type = 'article'
+
+    return {
+      title: title,
+      meta: [
+        { hid: 'og:title', name: 'og:title', content: title },
+        { hid: 'description', name: 'description', content: descr },
+        { hid: 'og:description', name: 'og:description', content: descr },
+        { hid: 'og:type', name: 'og:type', content: type },
+        { hid: 'og:img', name: 'og:img', content: img },
+      ]
+    }
+  },
+
   async asyncData(context) {
     let [post, comments] = await Promise.all([
       context.store.$axios.get(`https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts/${context.params.id}.json`),

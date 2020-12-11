@@ -1,9 +1,12 @@
+import Cookie from 'js-cookie'
+
 export const state = () => ({
   postsLoaded: [],
   token: null,
   commetsLoaded: []
 })
 
+// MUTATIONS
 export const mutations = {
   setPosts(state, posts) {
     state.postsLoaded = posts
@@ -26,9 +29,14 @@ export const mutations = {
   // setToken
   setToken(state, token) {
     state.token = token
+  },
+
+  destroyToken(state) {
+    state.token = null
   }
 }
 
+// ACTIONS
 export const actions = {
   nuxtServerInit({commit}, context) {
     return this.$axios.get('https://nuxt-course-tocode-blog-default-rtdb.europe-west1.firebasedatabase.app/posts.json')
@@ -50,8 +58,39 @@ export const actions = {
       password: authData.password,
       returnSecureToken: true // защищает админку (для обычных пользователей это не обязательно)
     })
-      .then(res => { commit('setToken', res.data.idToken) })
+      .then(res => {
+        let token = res.data.idToken
+        commit('setToken', token)
+        // to localStorage
+        localStorage.setItem('token', token)
+        // to cookie
+        Cookie.set('jwt', token)
+      })
       .catch(e => console.log(e))
+  },
+
+  initAuth({commit}, req) {
+    let token
+
+    if (req) {
+      if (!req.headers.cookie) return false
+      const jwtCookie = req.headers.cookie
+        .split(';')
+        .find(t => t.trim().startsWith('jwt='))
+      if (!jwtCookie) return false
+      token = jwtCookie.split('=')[1]
+    } else {
+      token = localStorage.getItem('token')
+      if (!token) return false
+    }
+
+    commit('setToken', token)
+  },
+
+  logoutUser({commit}) {
+    commit('destroyToken')
+    localStorage.removeItem('token')
+    Cookie.remove('jwt')
   },
 
   addPost({commit}, post) {

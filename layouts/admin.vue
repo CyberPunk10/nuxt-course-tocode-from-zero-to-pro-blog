@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <Header/>
-    <Nuxt class="wrapper-content wrapper-content--fixed"/>
-  </div>
+  <client-only>
+    <div>
+      <Header/>
+      <Nuxt class="wrapper-content wrapper-content--fixed"/>
+    </div>
+  </client-only>
 </template>
 
 <script>
 export default {
-  middleware: ['auth']
+  middleware: ['auth-check', 'auth']
 }
 </script>
 

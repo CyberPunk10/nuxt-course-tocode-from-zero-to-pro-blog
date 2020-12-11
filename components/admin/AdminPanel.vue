@@ -10,6 +10,9 @@
         :title="link.title"
       >{{ link.title }}</nuxt-link>
     </li>
+    <li>
+      <span @click="logoutUser" class="navbar-link logout">Logout</span>
+    </li>
   </ul>
 </template>
 
@@ -23,6 +26,15 @@ export default {
         {title: 'Auth', url: '/admin/auth'},
       ]
     }
+  },
+  methods: {
+    logoutUser() {
+      console.log(this.$store.token)
+      this.$store.dispatch('logoutUser')
+        .then( () => {
+          this.$router.push('/admin/auth')
+        })
+    }
   }
 }
 </script>
@@ -35,4 +47,7 @@ export default {
   .navbar-link
     font-size: 16px
     padding: 7px 0
+
+  .logout
+    cursor: pointer
 </style>

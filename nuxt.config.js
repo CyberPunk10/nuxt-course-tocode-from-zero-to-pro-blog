@@ -8,8 +8,10 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'robots', content: 'none'} // закрыть сайт от индексации
+      // { hid: 'description', name: 'description', content: '' },
+      { name: 'robots', content: 'none'}, // закрыть сайт от индексации
+      // { name: 'yandex-verification', content: 'KEY'},
+      // { name: 'google-site-verification', content: 'KEY'}
 
     ],
     link: [
@@ -17,6 +19,12 @@ export default {
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Montserrat&display=swap"}
     ]
   },
+
+  // Animation (переходы между страницами)
+  // transition: {
+  //   name: 'fade',
+  //   mode: 'out-in'
+  // },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: ['~/assets/sass/main.sass'],

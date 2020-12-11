@@ -2,15 +2,15 @@
   <section class="new-post">
     <div class="container">
       <h2 v-if="titleForm" class="title tac">{{ titleForm }}</h2>
-      <form @submit.prevent>
+      <form @submit.prevent="onSubmit">
         <AppInput v-model="post.title">Title:</AppInput>
         <AppTextarea v-model="post.descr">Description:</AppTextarea>
         <AppInput v-model="post.img">Img link:</AppInput>
         <AppTextarea v-model="post.content">Content:</AppTextarea>
 
         <div class="conrols tac">
-          <AppButton @click="cancel" class="btnDanger">Cancel</AppButton>
-          <AppButton @click="onSave">Save</AppButton>
+          <div @click="cancel" class="btn btnDanger">Cancel</div>
+          <AppButton>Save</AppButton>
         </div>
       </form>
     </div>
@@ -43,7 +43,7 @@ export default {
     cancel() {
       this.$router.push('/admin')
     },
-    onSave() {
+    onSubmit() {
       this.$emit('submit', this.post)
     }
   }
